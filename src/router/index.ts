@@ -23,15 +23,19 @@ const routes = [
       hasNewsletterPopup: route.query.somePropsInRoute
         ? true
         : false /* pass static props or pass props depending on props inside route */
-    })
-  },
-  {
-    path: '/destination/:id/:name/:slug',
-    name: 'experience.view',
-    component: () => import('../views/ExperienceView.vue'),
-    props: (route) => ({
-      experienceSlug: route.params.slug
-    })
+    }),
+    // NESTED ROUTE combine with <RouterView /> inside the parent
+    children: [
+      {
+        path: ':experienceSlug', // No need the parent params inside the path because it's a nested routes
+        name: 'experience.view',
+        component: () => import('../views/ExperienceView.vue'),
+        props: (route) => ({
+          ...route.params,
+          experienceSlug: route.params.experienceSlug
+        })
+      }
+    ]
   }
 ]
 

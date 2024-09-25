@@ -28,10 +28,9 @@ onBeforeMount(() => {
 
 async function fetchData() {
   try {
-    const response = await fetch(`https://travel-dummy-api.netlify.app/${route.params.name}.json`)
+    const response = await fetch(`https://travel-dummy-api.netlify.app/${route.params.slug}.json`)
     const data = await response.json()
     experience.value = data.experiences.find((e) => e.slug === props.experienceSlug)
-    console.log(experience)
   } catch (err) {
     console.log(err)
   }

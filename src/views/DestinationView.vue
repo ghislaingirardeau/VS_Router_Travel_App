@@ -18,12 +18,15 @@
         :key="experience.name"
         :to="{
           name: 'experience.view',
-          params: { id: destination.id, name: destination.slug, slug: experience.slug }
+          params: { id: destination.id, slug: destination.slug, experienceSlug: experience.slug }
         }"
       >
         <ExperienceCard :experience="experience" />
       </RouterLink>
     </div>
+    <!-- we dont want to navigate to a new page but instead to go to a nested route -->
+    <!-- in the router, we will add a children to this route -->
+    <RouterView />
   </section>
 </template>
 
