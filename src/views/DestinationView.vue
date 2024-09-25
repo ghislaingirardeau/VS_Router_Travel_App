@@ -3,6 +3,7 @@
     <h1>
       {{ destination.name }}
     </h1>
+    <GoBack />
     <div class="destination-details">
       <img :src="`/images/${destination.image}`" />
       <p>
@@ -34,6 +35,7 @@
 import { RouterLink, useRoute } from 'vue-router'
 import { computed, reactive, ref, watch, onBeforeMount, useModel } from 'vue'
 import ExperienceCard from '@/components/ExperienceCard.vue'
+import GoBack from '@/components/GoBack.vue'
 
 const route = useRoute()
 
