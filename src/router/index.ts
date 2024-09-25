@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import Error from '../views/Error.vue'
 
 const routes = [
   {
@@ -36,6 +37,12 @@ const routes = [
         })
       }
     ]
+  },
+  // to catch all not matching route => regex inside the doc
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'Error',
+    component: Error
   }
 ]
 
