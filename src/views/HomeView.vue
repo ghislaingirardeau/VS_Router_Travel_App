@@ -8,7 +8,11 @@ const destinations = sourceData.destinations
   <main class="home">
     <h1>destination</h1>
     <div class="destinations">
-      <RouterLink v-for="destination in destinations" :key="destination.id" :to="destination.slug">
+      <RouterLink
+        v-for="destination in destinations"
+        :key="destination.id"
+        :to="{ name: 'destination.view', params: { id: destination.id, slug: destination.slug } }"
+      >
         <h2>
           {{ destination.name }}
         </h2>

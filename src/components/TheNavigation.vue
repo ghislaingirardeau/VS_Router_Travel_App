@@ -1,15 +1,12 @@
 <template>
   <div id="nav">
-    <RouterLink to="/">Home</RouterLink>
+    <RouterLink id="logo" to="/">Home</RouterLink>
     <RouterLink
       v-for="destination in destinationsSlug"
       :key="destination.id"
-      :to="`/destination/${destination.id}`"
+      :to="{ name: 'destination.view', params: { id: destination.id, slug: destination.slug } }"
       >{{ destination.name }}
     </RouterLink>
-    <RouterLink to="brazil">Brazil</RouterLink>
-    <RouterLink to="panama">Panama</RouterLink>
-    <RouterLink to="hawaii">Hawaii</RouterLink>
   </div>
 </template>
 
@@ -26,7 +23,7 @@ const destinationsSlug = computed(() => {
 
 <style lang="css" scoped>
 #nav .custom-link-active-class {
-  color: red;
-  border-bottom: 2px solid red;
+  color: white;
+  border-bottom: 2px solid white;
 }
 </style>
