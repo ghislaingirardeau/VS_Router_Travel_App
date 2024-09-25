@@ -78,7 +78,8 @@ router.beforeEach((to, from) => {
   }
   if (to.query.redirect) {
     return {
-      name: 'home'
+      name: 'home',
+      hash: '#dashboard' /* usefull to show from where the redirect is from */
     }
   }
 })

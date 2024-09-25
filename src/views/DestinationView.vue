@@ -60,7 +60,7 @@ onBeforeMount(() => {
 
 async function fetchData() {
   try {
-    const response = await fetch(`https://travel-dummy-api.netlify.app/${route.params.slug}.json`)
+    const response = await fetch(`https://travel-dummy-api.netlify.app/${route.params.slug}`)
     destination.value = await response.json()
   } catch (err) {
     console.log(err)
@@ -71,6 +71,10 @@ async function fetchData() {
       query: route.query,
       hash: route.hash
     })
+    // .replace() => different de push dans l'histo de navigation, cela remplace l'url courante si on navigue avec les fleches du navigateur
+    // ici, comme on gere une erreur cela est plus intéressant d'utiliser .replace que .push
+    // .push() + click back arrow, on reste sur la meme url et donc meme erreur
+    // .replace() + click back arrow, revient sur la route précédente
   }
 }
 </script>
