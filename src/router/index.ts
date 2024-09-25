@@ -15,19 +15,18 @@ const routes = [
 
     props: (route) => ({
       id: parseInt(route.params.id),
-      hasNewsletterPopup: route.query.somePropsInRoute
-        ? true
-        : false /* pass static props or pass props depending on props inside route */
+      hasNewsletterPopup: route.query.somePropsInRoute ? true : false
     }),
-    // NAVIGATION GUARDS FOR SPECIAL ROUTES
-    // here we use an API, so navigation guards is used through try...catch by fetching data
+
     beforeEnter(to, from) {
       console.log(to)
     },
-    // NESTED ROUTE combine with <RouterView /> inside the parent
+    meta: {
+      auth: true
+    },
     children: [
       {
-        path: ':experienceSlug', // No need the parent params inside the path because it's a nested routes
+        path: ':experienceSlug',
         name: 'experience.view',
         component: () => import('../views/ExperienceView.vue'),
         props: (route) => ({
@@ -37,7 +36,6 @@ const routes = [
       }
     ]
   },
-  // to catch all not matching route => regex inside the doc
   {
     path: '/:pathMatch(.*)*',
     name: 'Error',
@@ -50,12 +48,11 @@ const router = createRouter({
   routes,
   linkActiveClass: 'custom-link-active-class',
   scrollBehavior(to, from, savedPosition) {
-    // API NEED TO LOAD BEFORE BEING ABLE TO DO THE SCROLL TO
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (to.name === 'experience.view') {
           resolve({
-            el: 'aside' /* get element and scroll 10px above this one */,
+            el: 'aside',
             left: 0,
             top: 10,
             behavior: 'smooth'
@@ -65,6 +62,15 @@ const router = createRouter({
         }
       }, 300)
     })
+  }
+})
+
+// GLOBAL NAVIGATION GUARDS
+// Every time the route change this callback is fired
+router.beforeEach((to, from) => {
+  console.log(to)
+  if (to.meta.auth) {
+    // routes is only for auth user
   }
 })
 
