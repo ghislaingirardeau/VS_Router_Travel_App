@@ -9,6 +9,11 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: () => import('../views/Dashboard.vue')
+  },
+  {
     path: '/destination/:id/:slug',
     name: 'destination.view',
     component: () => import('../views/DestinationView.vue'),
@@ -68,9 +73,13 @@ const router = createRouter({
 // GLOBAL NAVIGATION GUARDS
 // Every time the route change this callback is fired
 router.beforeEach((to, from) => {
-  console.log(to)
   if (to.meta.auth) {
     // routes is only for auth user
+  }
+  if (to.query.redirect) {
+    return {
+      name: 'home'
+    }
   }
 })
 

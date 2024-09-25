@@ -7,6 +7,7 @@
       :to="{ name: 'destination.view', params: { id: destination.id, slug: destination.slug } }"
       >{{ destination.name }}
     </RouterLink>
+    <RouterLink :to="{ name: 'dashboard', query: { redirect: 'true' } }">Dashboard</RouterLink>
   </div>
 </template>
 
