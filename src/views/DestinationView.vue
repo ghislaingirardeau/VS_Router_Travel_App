@@ -32,12 +32,13 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink, useRoute } from 'vue-router'
-import { computed, reactive, ref, watch, onBeforeMount, useModel } from 'vue'
+import { onBeforeRouteUpdate, RouterLink, useRoute, useRouter } from 'vue-router'
+import { computed, reactive, ref, watch, onBeforeMount } from 'vue'
 import ExperienceCard from '@/components/ExperienceCard.vue'
 import GoBack from '@/components/GoBack.vue'
 
 const route = useRoute()
+const router = useRouter()
 
 const props = defineProps({
   id: {
@@ -51,15 +52,6 @@ const props = defineProps({
 
 let destination = ref({})
 
-// 2 options to fetch inside dynamic route
-
-// USING WATCH: but better use when only few routes or limited pages (otherwise, watch a big data)
-// watch(() => route.params.id, fetchData, { immediate: true })
-
-// USING KEY TAG & LIFECYCLE HOOK
-// KEY inside router-view component (parent): but re-built all component
-// BETTER APPROACH
-// key destroy component and re-built it when ever it change
 onBeforeMount(() => {
   fetchData()
 })
@@ -68,9 +60,15 @@ async function fetchData() {
   try {
     const response = await fetch(`https://travel-dummy-api.netlify.app/${route.params.slug}.json`)
     destination.value = await response.json()
-    console.log(destination.value)
   } catch (err) {
     console.log(err)
+    // To allowed keeping the url while rendering a different page !!
+    router.push({
+      name: 'Error',
+      params: { pathMatch: route.path.split('/').splice(1) },
+      query: route.query,
+      hash: route.hash
+    })
   }
 }
 </script>
