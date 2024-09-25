@@ -24,6 +24,14 @@ const routes = [
         ? true
         : false /* pass static props or pass props depending on props inside route */
     })
+  },
+  {
+    path: '/destination/:id/:name/:slug',
+    name: 'experience.view',
+    component: () => import('../views/ExperienceView.vue'),
+    props: (route) => ({
+      experienceSlug: route.params.slug
+    })
   }
 ]
 

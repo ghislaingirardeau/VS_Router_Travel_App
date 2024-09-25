@@ -10,18 +10,34 @@
       </p>
     </div>
   </section>
+  <section class="experiences">
+    <h2>Top experiences in {{ destination.name }}</h2>
+    <div class="cards">
+      <RouterLink
+        v-for="experience in destination.experiences"
+        :key="experience.name"
+        :to="{
+          name: 'experience.view',
+          params: { id: destination.id, name: destination.slug, slug: experience.slug }
+        }"
+      >
+        <ExperienceCard :experience="experience" />
+      </RouterLink>
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import { computed, reactive, ref, watch, onBeforeMount, useModel } from 'vue'
+import ExperienceCard from '@/components/ExperienceCard.vue'
 
 const route = useRoute()
 
 const props = defineProps({
   id: {
     type: Number,
-    require: true
+    required: true
   },
   hasNewsletterPopup: {
     type: Boolean
