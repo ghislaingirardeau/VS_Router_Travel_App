@@ -48,7 +48,19 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
-  linkActiveClass: 'custom-link-active-class'
+  linkActiveClass: 'custom-link-active-class',
+  scrollBehavior(to, from, savedPosition) {
+    // API NEED TO LOAD BEFORE BEING ABLE TO DO THE SCROLL TO
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (to.name === 'experience.view') {
+          resolve({ left: 0, top: 500, behavior: 'instant' })
+        } else {
+          resolve({ left: 0, top: 0, behavior: 'smooth' })
+        }
+      }, 100)
+    })
+  }
 })
 
 export default router
