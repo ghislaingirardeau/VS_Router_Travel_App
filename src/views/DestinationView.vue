@@ -1,34 +1,36 @@
 <template>
-  <section class="destinations">
-    <h1>
-      {{ destination.name }}
-    </h1>
-    <GoBack />
-    <div class="destination-details">
-      <img :src="`/images/${destination.image}`" />
-      <p>
-        {{ destination.description }}
-      </p>
-    </div>
-  </section>
-  <section class="experiences">
-    <h2>Top experiences in {{ destination.name }}</h2>
-    <div class="cards">
-      <RouterLink
-        v-for="experience in destination.experiences"
-        :key="experience.name"
-        :to="{
-          name: 'experience.view',
-          params: { id: destination.id, slug: destination.slug, experienceSlug: experience.slug }
-        }"
-      >
-        <ExperienceCard :experience="experience" />
-      </RouterLink>
-    </div>
-    <!-- we dont want to navigate to a new page but instead to go to a nested route -->
-    <!-- in the router, we will add a children to this route -->
-    <RouterView />
-  </section>
+  <div>
+    <section class="destinations">
+      <h1>
+        {{ destination.name }}
+      </h1>
+      <GoBack />
+      <div class="destination-details">
+        <img :src="`/images/${destination.image}`" />
+        <p>
+          {{ destination.description }}
+        </p>
+      </div>
+    </section>
+    <section class="experiences">
+      <h2>Top experiences in {{ destination.name }}</h2>
+      <div class="cards">
+        <RouterLink
+          v-for="experience in destination.experiences"
+          :key="experience.name"
+          :to="{
+            name: 'experience.view',
+            params: { id: destination.id, slug: destination.slug, experienceSlug: experience.slug }
+          }"
+        >
+          <ExperienceCard :experience="experience" />
+        </RouterLink>
+      </div>
+      <!-- we dont want to navigate to a new page but instead to go to a nested route -->
+      <!-- in the router, we will add a children to this route -->
+      <RouterView />
+    </section>
+  </div>
 </template>
 
 <script setup lang="ts">

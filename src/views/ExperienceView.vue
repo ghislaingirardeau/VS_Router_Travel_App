@@ -1,10 +1,10 @@
 <template>
-  <section>
+  <aside>
     <h1>{{ experience.name }}</h1>
     <img :src="`/images/${experience.image}`" />
 
     <p>{{ experience.description }}</p>
-  </section>
+  </aside>
 </template>
 
 <script setup>

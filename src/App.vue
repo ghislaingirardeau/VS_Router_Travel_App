@@ -8,8 +8,22 @@ const route = useRoute()
 <template>
   <TheNavigation />
   <div class="container">
-    <RouterView :key="route.path" />
+    <RouterView v-slot="{ Component }">
+      <transition name="fade" mode="out-in">
+        <component :is="Component" :key="route.path" />
+      </transition>
+    </RouterView>
   </div>
 </template>
 
-<style scoped></style>
+<style lang="css">
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

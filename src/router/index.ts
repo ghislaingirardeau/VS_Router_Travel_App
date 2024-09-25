@@ -54,11 +54,16 @@ const router = createRouter({
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (to.name === 'experience.view') {
-          resolve({ left: 0, top: 500, behavior: 'instant' })
+          resolve({
+            el: 'aside' /* get element and scroll 10px above this one */,
+            left: 0,
+            top: 10,
+            behavior: 'smooth'
+          })
         } else {
           resolve({ left: 0, top: 0, behavior: 'smooth' })
         }
-      }, 100)
+      }, 300)
     })
   }
 })
