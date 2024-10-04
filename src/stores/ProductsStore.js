@@ -4,6 +4,11 @@ import { defineStore } from 'pinia'
 export const useProductStore = defineStore('product', () => {
   // STATE
   const lastname = ref('Apple')
+  const datas = ref(null)
 
-  return { lastname }
+  const fill = async () => {
+    datas.value = (await import('@/assets/data.json')).default
+  }
+
+  return { lastname, datas, fill }
 })

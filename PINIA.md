@@ -96,3 +96,22 @@ const store = useStore()
 
 store.$reset()
 ```
+
+## Exo
+
+Bonus: jeu de la fourchette en utilisant Pinia
+
+- création du store: cardStore
+- ensemble ajout des boutons add travel pour alimenter le card store
+
+Puis à eux
+
+- reset input quand add travel
+- verifie que le voyage n'est pas deja ajouter
+
+- ajouter une route vers le panier
+- ajouter dans navigation un lien vers le panier + nombre qui affiche le total dans le panier
+- montrer le détail de panier
+- afficher le total du panier
+- faire un reset du panier
+- modifier le panier

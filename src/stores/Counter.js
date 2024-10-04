@@ -13,13 +13,13 @@ import { defineStore } from 'pinia'
 
 import { ref, computed } from 'vue'
 
-import { useProductStore } from './ProductsStore'
+import { useOtherStore } from './OtherStore'
 
 export const useCounterStore = defineStore('counter', () => {
   // STATE
   const count = ref(0)
   const name = ref('Eduardo')
-  const auth = useProductStore()
+  const auth = useOtherStore()
   // GETTER
   const doubleCount = computed(() => count.value * 2)
   console.log(auth)

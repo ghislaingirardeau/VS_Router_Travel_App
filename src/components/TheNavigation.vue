@@ -8,7 +8,7 @@
       >{{ destination.name }}
     </AppLink>
     <AppLink :to="{ name: 'dashboard', query: { redirect: 'true' } }">Dashboard</AppLink>
-    <AppLink to="https://vueschool.io/">Vue school</AppLink>
+    <AppLink to="https://vuejs.org/guide/introduction.html">Vue school</AppLink>
   </div>
 </template>
 
