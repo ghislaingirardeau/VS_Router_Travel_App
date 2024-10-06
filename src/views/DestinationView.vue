@@ -60,7 +60,7 @@ onBeforeMount(() => {
 
 async function fetchData() {
   try {
-    const response = await fetch(`https://travel-dummy-api.netlify.app/${route.params.slug}`)
+    const response = await fetch(`https://travel-dummy-api.netlify.app/${route.params.slug}.json`)
     destination.value = await response.json()
   } catch (err) {
     console.log(err)

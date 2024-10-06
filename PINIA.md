@@ -89,22 +89,24 @@ const { name, doubleCount } = storeToRefs(store)
 const { increment } = store
 ```
 
-#### Resetting the state
+#### Reseting the state
 
-```js
-const store = useStore()
-
-store.$reset()
-```
+Dans le store, créer une action qui va remettre le store à 0
 
 ## Exo
 
-Bonus: jeu de la fourchette en utilisant Pinia
+### Bonus decouverte: jeu de la fourchette en utilisant Pinia
+
+### Travel App: rendre notre site comme un site e-commerce
+
+Création de la fonctionnalité poru ajouter un voyage au panier
 
 - création du store: cardStore
 - ensemble ajout des boutons add travel pour alimenter le card store
 
-Puis à eux
+Gestion des routes, plus besoin de rappeler les données sur chaque route, on peut utiliser le store !
+
+### En semi autonomie
 
 - reset input quand add travel
 - verifie que le voyage n'est pas deja ajouter
