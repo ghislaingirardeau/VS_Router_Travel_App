@@ -12,9 +12,11 @@ export const useCardStore = defineStore('cardStore', () => {
   })
 
   const totalPriceInCards = computed(() => {
-    return card.value
-      .map((item) => item.price)
-      .reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+    let count = 0
+    card.value.forEach((item) => {
+      count += item.quantity * item.price
+    })
+    return count
   })
 
   const addToCard = (item) => {

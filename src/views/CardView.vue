@@ -18,7 +18,7 @@
             {{ item.quantity }}
             <button @click="cardStore.increase(item.id)">+</button>
           </td>
-          <td class="row_price">{{ item.price }}</td>
+          <td class="row_price">{{ item.price * item.quantity }}</td>
         </tr>
       </tbody>
       <tfoot>
