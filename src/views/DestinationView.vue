@@ -15,42 +15,21 @@
     <section class="experiences">
       <h2>Top experiences in {{ destination.name }}</h2>
       <div class="cards">
-        <RouterLink
-          v-for="experience in destination.experiences"
-          :key="experience.name"
-          :to="{
-            name: 'experience.view',
-            params: { id: destination.id, slug: destination.slug, experienceSlug: experience.slug }
-          }"
-        >
+        <div v-for="experience in destination.experiences" :key="experience.name">
           <ExperienceCard :experience="experience" />
-        </RouterLink>
+        </div>
       </div>
-      <!-- we dont want to navigate to a new page but instead to go to a nested route -->
-      <!-- in the router, we will add a children to this route -->
-      <RouterView />
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onBeforeRouteUpdate, RouterLink, useRoute, useRouter } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import { computed, reactive, ref, watch, onBeforeMount } from 'vue'
 import ExperienceCard from '@/components/ExperienceCard.vue'
 import GoBack from '@/components/GoBack.vue'
 
 const route = useRoute()
-const router = useRouter()
-
-const props = defineProps({
-  id: {
-    type: Number,
-    required: true
-  },
-  hasNewsletterPopup: {
-    type: Boolean
-  }
-})
 
 let destination = ref({})
 
@@ -64,17 +43,6 @@ async function fetchData() {
     destination.value = await response.json()
   } catch (err) {
     console.log(err)
-    // To allowed keeping the url while rendering a different page !!
-    router.push({
-      name: 'Error',
-      params: { pathMatch: route.path.split('/').splice(1) },
-      query: route.query,
-      hash: route.hash
-    })
-    // .replace() => different de push dans l'histo de navigation, cela remplace l'url courante si on navigue avec les fleches du navigateur
-    // ici, comme on gere une erreur cela est plus intéressant d'utiliser .replace que .push
-    // .push() + click back arrow, on reste sur la meme url et donc meme erreur
-    // .replace() + click back arrow, revient sur la route précédente
   }
 }
 </script>
