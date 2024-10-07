@@ -1,5 +1,7 @@
 # Vue JS - Router
 
+REPO: https://github.com/ghislaingirardeau/Ynov-vue-travelApp
+
 Création d'un site e-commerce d'agence de voyage
 
 Les données sont fournies via un fichier JSON => data.json
@@ -9,7 +11,7 @@ Objectif: pouvoir naviguer entre différentes pages d'un site web
 
 ## Installation
 
-Si projet existe déjà, ajoute la dépendance: npm install vue-router@4
+Si projet existe déjà, ajoute la dépendance: **npm install vue-router@4**
 
 Sinon install vue et dans la config, cocher 'router'
 
@@ -123,7 +125,9 @@ On peut aussi utiliser le nom de la route !
 
 #### Exo - faire la meme chose avec la route Panama
 
-## Route dynamique
+#### Exo - appliquer RouterLink via la boucle v-for (code commenté)
+
+## Routes dynamiques
 
 Tout fonctionne mais si on a 1000 destinations, il faut tous les saisir !!
 
@@ -186,3 +190,52 @@ On peut mettre plusieurs params dans une route, par exemple on peut ajouter le n
     component: () => import('../views/DestinationView.vue')
   }
 ```
+
+## Programmatic Navigation
+
+La navigation avec RouterLink fonctionne très bien mais si on veut envoyer l'utilisateur vers une route sans que celui-ci est cliqué sur un lien (après la soumission d'un formulaire par exemple)
+
+C'est là que l'on va pouvoir utiliser `useRouter()`
+
+```js
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+console.log(router)
+// router.push({ name: 'home' }) => va vers une autre page
+// router.go(-1) => navigation en arrière
+```
+
+Dans router, nous avons accès à beaucoup de méthode dont `push` ou encore `go`
+
+### EXO - Mettre en place un bouton de retour sur les pages de destinations
+
+## Navigation Guards
+
+Pour protéger certaines routes que je ne veux rendre accessible quà certain utilisateur (ex: admin du site)
+
+Je peux venir mettre une logique qui va bloquer ou non l'accès à une route
+
+```js
+{
+    path: '/test',
+    name: 'test',
+    component: testView,
+    beforeEnter: (to, from) => {
+      console.log(to)
+      return true // si return true la navigation se fera sinon elle sera bloqué
+    }
+}
+```
+
+## EXO final
+
+### Mettre en place une route pour voir le panier /CardView
+
+Card view, va juste afficher un titre `Votre panier`
+
+### Mettre en place un component /TheNavigation
+
+Faire un barre de navigation avec les différents liens vers chaque pays !
+
+## Récupération de données

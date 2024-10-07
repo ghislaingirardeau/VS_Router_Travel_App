@@ -11,7 +11,11 @@ const routes = [
   {
     path: '/test',
     name: 'test',
-    component: testView
+    component: testView,
+    beforeEnter: (to, from) => {
+      console.log(to)
+      return true
+    }
   },
   // route avec params, pour une meilleur experience UX + SEO, mettre le slug dans url plutot que l'id tout seul
   {
