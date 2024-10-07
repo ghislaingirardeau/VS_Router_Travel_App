@@ -23,6 +23,11 @@ const routes = [
     component: () => import('../views/DestinationView.vue')
   },
   {
+    path: '/card',
+    name: 'card.view',
+    component: () => import('../views/CardView.vue')
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'Error',
     component: Error

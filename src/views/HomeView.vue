@@ -1,24 +1,3 @@
-<script setup>
-import sourceData from '../assets/data.json'
-import { useProductStore } from '@/stores/ProductsStore.js'
-import { useCardStore } from '@/stores/CardStore.js'
-
-import { ref } from 'vue'
-import AppInput from '@/components/AppInput.vue'
-
-const store = useProductStore()
-const cardStore = useCardStore()
-
-store.fill()
-
-// const destinations = sourceData.destinations
-
-const addToCard = (destination) => {
-  const { id, price, quantity, name } = destination
-  cardStore.addToCard({ id, price, quantity, name })
-}
-</script>
-
 <template>
   <main class="home">
     <h1>destination</h1>
@@ -48,3 +27,17 @@ const addToCard = (destination) => {
     </div>
   </main>
 </template>
+
+<script setup>
+import sourceData from '../assets/data.json'
+import { useProductStore } from '@/stores/ProductsStore.js'
+
+import { ref } from 'vue'
+import AppInput from '@/components/AppInput.vue'
+
+const store = useProductStore()
+
+store.fill()
+
+// const destinations = sourceData.destinations
+</script>

@@ -11,9 +11,9 @@ const props = defineProps({
 const quantity = ref(0)
 
 const addToCard = () => {
-  const { id } = props.destination
+  const { id, name, price } = props.destination
   console.log(id)
-  cardStore.addToCard({ id, quantity })
+  cardStore.addToCard({ id, quantity, name, price })
 }
 </script>
 <template>

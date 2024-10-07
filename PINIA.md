@@ -95,7 +95,7 @@ Dans le store, créer une action qui va remettre le store à 0
 
 ## Exo
 
-### Bonus decouverte: jeu de la fourchette en utilisant Pinia
+### Utiliser datas dans le store plutot que fetch dans destination views
 
 ### Travel App: rendre notre site comme un site e-commerce
 
