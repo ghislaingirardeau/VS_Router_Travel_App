@@ -239,3 +239,25 @@ Card view, va juste afficher un titre `Votre panier`
 Faire un barre de navigation avec les différents liens vers chaque pays !
 
 ## Récupération de données
+
+Pour utiliser les données d'une API
+
+```js
+const loading = ref(false)
+let destination = ref({})
+
+onBeforeMount(() => {
+  fetchData()
+})
+
+async function fetchData() {
+  loading.value = true
+  try {
+    const response = await fetch(`https://travel-dummy-api.netlify.app/${route.params.slug}`)
+    destination.value = await response.json()
+  } catch (err) {
+    console.log(err)
+  }
+  loading.value = false
+}
+```
