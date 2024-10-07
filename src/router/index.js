@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import testView from '../views/testView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: testView
   },
   // route avec params, pour une meilleur experience UX + SEO, mettre le slug dans url plutot que l'id tout seul
   {
